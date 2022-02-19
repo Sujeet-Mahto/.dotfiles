@@ -1,3 +1,5 @@
+servers = { 'pyright', 'html', 'cssls', 'tailwindcss'}
+
 require("packer").startup(function()
   use "wbthomason/packer.nvim"
 
@@ -57,7 +59,6 @@ require("packer").startup(function()
   capabilities.textDocument.completion.completionItem.snippetSupport = true -- For HTML
 
   -- For loop to add servers in lsp
-  servers = { 'pyright', 'html', 'cssls', 'tailwindcss' }
   for _, lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup {
       capabilities = capabilities,

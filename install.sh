@@ -5,9 +5,17 @@ printf "Script started!\n"
 # Install dependencicies
 pkg install neovim -y
 pkg install python -y
+pkg install nodejs -y
 pkg install git -y
+
+# Packer for neovim
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# Lsp
+npm i -g pyright
+npm i -g vscode-langservers-extracted
+#npm install -g @tailwindcss/language-server
 
 
 if [ ! -d ".config" ]; then
