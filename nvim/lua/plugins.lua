@@ -1,4 +1,3 @@
-servers = { 'pyright', 'html', 'cssls', 'tailwindcss'}
 
 require("packer").startup(function()
   use "wbthomason/packer.nvim"
@@ -12,13 +11,9 @@ require("packer").startup(function()
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
 
-
-
   -- For luasnip users.
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
-
-
 
   -- Setup nvim-cmp.
   local cmp = require'cmp'
@@ -55,10 +50,11 @@ require("packer").startup(function()
     'kabouzeid/nvim-lspinstall',
   }
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true -- For HTML
 
   -- For loop to add servers in lsp
+  local servers = { 'pyright', 'html', 'cssls', 'tailwindcss'}
   for _, lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup {
       capabilities = capabilities,
@@ -101,7 +97,6 @@ require("packer").startup(function()
   use {
     'nvim-treesitter/nvim-treesitter',
 
-    run = ':TSUpdate',
 
     config = [[require'nvim-treesitter.configs'.setup {
       ensure_installed = "maintained",
