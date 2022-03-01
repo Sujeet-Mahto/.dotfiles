@@ -6,6 +6,7 @@ printf "Script started!\n"
 pkg upgrade
 pkg install neovim -y
 pkg install python -y
+pip install wheel
 pkg install nodejs -y
 
 # Packer for neovim
