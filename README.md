@@ -2,7 +2,7 @@
 
 ## This repo is to setup Neovim with my custom config fastly.
 
-================================
+--------------------------------
 
 ### Steps to install:
 
