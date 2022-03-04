@@ -95,7 +95,7 @@ require("packer").startup(function()
   require("lspconfig")["html"].setup {
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = { "html", "htmldjango" },
+    filetypes = { "html", "htmldjango", "markdown" },
   }
 
 
