@@ -1,7 +1,9 @@
 # .dotfiles
+
 ##This repo is to setup Neovim with my custom config fastly.
 
 ###Steps to install:
+
 * First clone this repo in root of your terminal.
 * `cd .dotfiles`
 * `./install.sh` OR `bash install.sh`
