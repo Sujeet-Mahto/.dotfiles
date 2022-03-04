@@ -1,7 +1,9 @@
+-- List of Lsp servers, html is setup separately down somewhere
+-- Add "tailwindcss" when needed
+local servers = { 'pyright', 'cssls' }
 
 require("packer").startup(function()
   use "wbthomason/packer.nvim"
-
 
 
   -- Nvim-cmp
@@ -84,7 +86,6 @@ require("packer").startup(function()
 
 
   -- For loop to add servers in lsp
-  local servers = { 'pyright', 'cssls', 'tailwindcss'}
   for _, lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup {
       capabilities = capabilities,
@@ -95,7 +96,7 @@ require("packer").startup(function()
   require("lspconfig")["html"].setup {
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = { "html", "htmldjango", "markdown" },
+    filetypes = { "html", "htmldjango" },
   }
 
 
