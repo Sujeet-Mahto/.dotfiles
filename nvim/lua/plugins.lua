@@ -104,10 +104,10 @@ require("packer").startup(function()
   -- Indent Line
   use {
     "lukas-reineke/indent-blankline.nvim",
-    config = [[require("indent_blankline").setup {
+    config = function() require("indent_blankline").setup {
       show_current_context = true,
       show_current_context_start = true,
-    }]]
+    } end
   }
 
 
@@ -116,82 +116,97 @@ require("packer").startup(function()
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = [[require('lualine').setup{}]]
+    config = function() require('lualine').setup {
+      options = {
+        theme = 'dracula-nvim'
+        -- theme = 'gruvbox'
+      }
+    } end
   }
 
 
 
   -- Github theme
-  use {
-    'projekt0n/github-nvim-theme',
-    config = [[require("github-theme").setup{
-      theme_style = "dark_default"
-    }]]
-  }
+  -- use {
+    --   'projekt0n/github-nvim-theme',
+    --   config = function() require("github-theme").setup{
+      --     theme_style = "dark_default"
+      --   } end
+      -- }
 
 
 
-  -- Treesitter
-  use {
-    'nvim-treesitter/nvim-treesitter',
+      -- Treesitter
+      use {
+        'nvim-treesitter/nvim-treesitter',
 
 
-    config = [[require'nvim-treesitter.configs'.setup {
-      ensure_installed = "maintained",
-      sync_install = false,
+        config = function() require'nvim-treesitter.configs'.setup {
+          ensure_installed = "maintained",
+          sync_install = false,
 
-      -- List of parsers to ignore installing
-      ignore_install = { },
+          -- List of parsers to ignore installing
+          ignore_install = { },
 
-      highlight = {
-        -- `false` will disable the whole extension
-        enable = true,
+          highlight = {
+            -- `false` will disable the whole extension
+            enable = true,
 
-        -- list of language that will be disabled
-        disable = { },
-      },
-    }]]
-  }
-
-
-
-  -- Vim Tree
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    },
-    config = function() require'nvim-tree'.setup {} end
-  }
-
-
-
-  -- Auto comment
-  use {
-    "terrortylor/nvim-comment",
-    require('nvim_comment').setup()
-  }
-
-
-
-  -- Color Highlight
-  use {
-    "norcalli/nvim-colorizer.lua",
-    config = function() require 'colorizer'.setup {
-      css = {
-        RGB      = true; -- #RGB hex codes
-        RRGGBB   = true; -- #RRGGBB hex codes
-        names    = true; -- "Name" codes like Blue
-        RRGGBBAA = true;
-        rgb_fn   = true; -- rgb(_, _, _)
+            -- list of language that will be disabled
+            disable = { },
+          },
+        } end
       }
-    }
-  end
-}
 
 
 
-end
-)
+      -- Vim Tree
+      use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+          'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        },
+        config = function() require'nvim-tree'.setup {} end
+      }
 
+
+
+      -- Auto comment
+      use {
+        "terrortylor/nvim-comment",
+        config = function() require('nvim_comment').setup{} end
+      }
+
+
+      -- Color Highlight
+      use {
+        "norcalli/nvim-colorizer.lua",
+        config = function() require 'colorizer'.setup {
+          css = {
+            RGB      = true; -- #RGB hex codes
+            RRGGBB   = true; -- #RRGGBB hex codes
+            names    = true; -- "Name" codes like Blue
+            RRGGBBAA = true;
+            rgb_fn   = true; -- rgb(_, _, _)
+          }
+        } end
+      }
+
+
+      -- theme
+      use {
+        'Mofiqul/dracula.nvim',
+      }
+
+
+
+      -- Grovebox theme
+      use {
+        "morhetz/gruvbox",
+      }
+
+
+
+    end
+    )
 

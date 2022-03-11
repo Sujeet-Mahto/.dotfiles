@@ -3,24 +3,29 @@
 printf "Script started!\n"
 
 # Install dependencicies
-pkg upgrade
+pkg upgrade -y
+pkg install git
 pkg install neovim -y
 pkg install python -y
-pip install wheel
 pkg install nodejs -y
 
+# pip packeges
+pip install --upgrade pip
+pip install wheel
+pip instal python-dotfiles
+
 # Packer for neovim
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Lsp
 npm i -g pyright
 npm i -g vscode-langservers-extracted
-#npm install -g @tailwindcss/language-server
+# npm install -g @tailwindcss/language-server
 
 
-if [ ! -d ".config" ]; then
-	mkdir ".config"
+if [ ! -d $HOME"/.config" ]; then
+	mkdir $HOME"/.config"
 fi
 
 ln -s $HOME"/.dotfiles/nvim/" $HOME"/.config/"
