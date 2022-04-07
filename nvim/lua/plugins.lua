@@ -1,6 +1,6 @@
 -- List of Lsp servers, html is setup separately down somewhere
 -- Add "tailwindcss" when needed
-local servers = { 'pyright', 'cssls' }
+local servers = { 'pyright', 'cssls', 'tsserver' }
 
 require("packer").startup(function()
   use "wbthomason/packer.nvim"
@@ -118,8 +118,8 @@ require("packer").startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require('lualine').setup {
       options = {
-        theme = 'dracula-nvim'
-        -- theme = 'gruvbox'
+        -- theme = 'dracula-nvim'
+        theme = 'gruvbox'
       }
     } end
   }
@@ -177,6 +177,13 @@ require("packer").startup(function()
         config = function() require('nvim_comment').setup{} end
       }
 
+
+
+      -- Telescope
+      use {
+        'nvim-telescope/telescope.nvim',
+        requires = { {'nvim-lua/plenary.nvim'} }
+      }
 
       -- Color Highlight
       use {
