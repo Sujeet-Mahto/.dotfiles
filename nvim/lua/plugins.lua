@@ -14,19 +14,19 @@ require("packer").startup(function()
   use 'hrsh7th/nvim-cmp'
 
   -- For luasnip users.
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
+  -- use 'L3MON4D3/LuaSnip'
+  -- use 'saadparwaiz1/cmp_luasnip'
 
   -- Setup nvim-cmp.
   local cmp = require'cmp'
 
   cmp.setup({
-    snippet = {
+    -- snippet = {
       -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      end,
-    },
+      -- expand = function(args)
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- end,
+    -- },
     mapping = {
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
@@ -38,8 +38,9 @@ require("packer").startup(function()
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'luasnip' }, -- For luasnip users.
-    }, {
+      -- { name = 'luasnip' }, -- For luasnip users.
+      },
+      {
       { name = 'buffer' },
     })
   })
