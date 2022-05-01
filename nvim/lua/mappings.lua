@@ -14,6 +14,7 @@ map("n", "<tab>", ":tabnext<CR>")
 map("n", "<S-<tab>>", ":tabprevious")
 map("n", "<F9>", ":w !python<CR>")
 map("i", "<F9>", "<ESC>:w !python<CR>")
+map("n", "<F10>", "<ESC>:w<CR>:!clang %<CR>:!./a.out<CR>", {silent = true})
 map("n", "tt", ":NvimTreeToggle<CR>")
 
 -- for ESC

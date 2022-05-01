@@ -8,6 +8,9 @@ vim.opt.cmdheight = 2
 vim.cmd [[au BufWritePre * :%s/\s\+$//e]]
 vim.opt.termguicolors = true-- enable 24-bit RGB colors
 
+-- Folding
+vim.cmd[[set foldmethod=expr]]
+vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
 
 -----------------------------------------------
 -- Tabs, indent
