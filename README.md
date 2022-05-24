@@ -1,6 +1,6 @@
 # .dotfiles
 
-## This repo is to setup Neovim with my custom config fastly.
+## My terminal config. It includes ZSH and Lunarvim.
 
 --------------------------------
 
@@ -10,7 +10,6 @@
 * `cd .dotfiles`
 * `./install.sh` OR `bash install.sh`
 * Now it will install some dependencies automatically.
-* Now open neovim with `nvim` and run `:PackerSync`
-* Restart neovim.
+* Restart terminal.
 * Done!
 
