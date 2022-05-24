@@ -1,35 +1,29 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-printf "Script started!\n"
+cd $HOME
+apt update && apt upgrade
 
-# Install dependencicies
-pkg upgrade -y
-pkg install git
-pkg install neovim -y
-pkg install python -y
-pkg install nodejs -y
+apt install git -y
+apt install curl -y
+apt install zsh -y
+apt install python -y
+apt install neovim -y
+apt install nodejs -y
+apt install tree -y
 
-# pip packeges
 pip install --upgrade pip
 pip install wheel
-pip instal python-dotfiles
 
-# Packer for neovim
-git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-~/.local/share/nvim/site/pack/packer/start/packer.nvim
+# Lunarvim setup
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+mv .local/bin/lvim ../usr/bin/
 
-# Lsp
-npm i -g pyright
-npm i -g vscode-langservers-extracted
-# npm install -g @tailwindcss/language-server
+# ZSH setup
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" -y
+# chsh -s zsh
+git clone https://github.com/adi1090x/termux-style
+cd termux-style
+./install
+./tstyle
 
-
-if [ ! -d $HOME"/.config" ]; then
-	mkdir $HOME"/.config"
-fi
-
-ln -s $HOME"/.dotfiles/nvim/" $HOME"/.config/"
-
-printf "\nEverything has installed succesfully"
-printf "\nRun the neovim and use cmd :PackerSync\n"
 
