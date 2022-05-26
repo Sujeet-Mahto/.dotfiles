@@ -12,6 +12,9 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "dracula"
+vim.opt["wrap"] = true
+-- vim.opt["spell"] = true
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -20,11 +23,13 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode = {
   ["<C-s>"] = ":w<CR>",
-  ["<F9>"] = ":w !python<CR>"
+  ["<F9>"] = ":w !python<CR>",
+  ["<F3>"] = ":w !black %<CR>",
 }
 
 lvim.keys.insert_mode = {
-  ["<F9>"] = "<ESC>:w !python<CR>"
+  ["<F9>"] = "<ESC>:w !python<CR>",
+  ["<F3>"] = "<ESC>:w !black %<CR>",
 }
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.

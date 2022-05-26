@@ -17,12 +17,12 @@ apt install lua-language-server -y
 
 pip install --upgrade pip
 pip install wheel
+pip install black
 
 # Lunarvim setup
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
-if [ ! -d ~/.config/lvim ]
-then
+if [[ ! -d ~/.config/lvim ]] then
   mkdir ~/.config/lvim
 fi
 ln -sf ~/.dotfiles/lvim/config.lua ~/.config/lvim/config.lua
@@ -38,4 +38,5 @@ cd termux-style
 ./install
 ./tstyle
 
+ln -sf ~/.dotfiles/motd ~/../usr/etc/motd
 printf "\n\nScript complete. Restart terminal.\n"
