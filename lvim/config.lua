@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "dracula"
+lvim.colorscheme = "gruvbox"
 vim.opt["wrap"] = true
 -- vim.opt["spell"] = true
 
