@@ -24,12 +24,12 @@ lvim.leader = "space"
 lvim.keys.normal_mode = {
   ["<C-s>"] = ":w<CR>",
   ["<F9>"] = ":w !python<CR>",
-  ["<F3>"] = ":w !black %<CR>",
+  ["<F3>"] = ":w<CR>:!black %<CR>:e<CR>",
 }
 
 lvim.keys.insert_mode = {
   ["<F9>"] = "<ESC>:w !python<CR>",
-  ["<F3>"] = "<ESC>:w !black %<CR>",
+  ["<F3>"] = "<ESC>:w<CR>:!black %<CR>:e<CR>",
 }
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
