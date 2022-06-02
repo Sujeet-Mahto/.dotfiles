@@ -25,11 +25,13 @@ lvim.keys.normal_mode = {
   ["<C-s>"] = ":w<CR>",
   ["<F9>"] = ":w !python<CR>",
   ["<F3>"] = ":w<CR>:!black %<CR>:e<CR>",
+  ['<F10>'] = ":w<CR>:!g++ %<CR>:!./a.out<CR>",
 }
 
 lvim.keys.insert_mode = {
   ["<F9>"] = "<ESC>:w !python<CR>",
   ["<F3>"] = "<ESC>:w<CR>:!black %<CR>:e<CR>",
+  ['<F10>'] = "<ESC>:w<CR>:!g++ %<CR>:!./a.out<CR>",
 }
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
@@ -75,6 +77,7 @@ lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  "cpp",
   "javascript",
   "json",
   "lua",
@@ -89,14 +92,38 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
+lvim.lsp.automatic_servers_installation = false
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
-require("lspconfig").clangd.setup {}
+
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  -- vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
+end
+require("lspconfig").clangd.setup { on_attach = on_attach }
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skiipped for the current filetype
