@@ -13,3 +13,14 @@
 * Restart terminal.
 * Done!
 
+# Minimal configs
+```
+.dotfiles/
+├── README.md
+├── install.sh
+├── lvim
+│   └── config.lua
+└── motd
+
+1 directory, 4 files
+```
